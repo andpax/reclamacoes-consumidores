@@ -1,0 +1,70 @@
+<Schema name="Schema Reclamacoes">
+  <Cube name="SchemaReclamacoes" visible="true" cache="true" enabled="true">
+    <Table name="fato">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sk_cliente" highCardinality="false" name="Consumidor">
+      <Hierarchy visible="true" hasAll="true" primaryKey="sk_cliente">
+        <Table name="dim_cliente">
+        </Table>
+        <Level name="Sexo" visible="true" column="sexo_cliente" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="FaixaEtaria" visible="true" column="faixa_etaria_cliente" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sk_operadora" highCardinality="false" name="Operadora">
+      <Hierarchy visible="true" hasAll="true" primaryKey="sk_operadora">
+        <Table name="dim_operadora">
+        </Table>
+        <Level name="NomeFantasia" visible="true" column="nome_operadora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sk_reclamacao" highCardinality="false" name="Reclamacao">
+      <Hierarchy visible="true" hasAll="true" primaryKey="sk_reclamacao">
+        <Table name="dim_reclamacao">
+        </Table>
+        <Level name="Assunto" visible="true" column="assunto_reclamacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Respondida" visible="true" column="respondida_reclamacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Situacao" visible="true" column="situacao_reclamacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Avaliacao" visible="true" column="avaliacao_reclamacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sk_territorio" highCardinality="false" name="Territorio">
+      <Hierarchy visible="true" hasAll="true" primaryKey="sk_territorio">
+        <Table name="dim_territorio">
+        </Table>
+        <Level name="Regiao" visible="true" column="regiao_territorio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Estado" visible="true" column="uf_territorio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Cidade" visible="true" column="cidade_territorio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="sk_data" highCardinality="false" name="Data">
+      <Hierarchy visible="true" hasAll="true" primaryKey="sk_data">
+        <Table name="dim_tempo">
+        </Table>
+        <Level name="Ano" visible="true" column="Ano" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Mes" visible="true" column="MesNome" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+        <Level name="Trimestre" visible="true" column="Trimestre" type="Integer" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
+        </Level>
+        <Level name="Semestre" visible="true" column="Semestre" type="Integer" uniqueMembers="false" levelType="TimeHalfYear" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="QuantidadeRec" column="total" datatype="Integer" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="NotaConsumidor" column="nota_consumidor" datatype="Integer" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="TempoResposta" column="tempo_resposta" datatype="Integer" aggregator="avg" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
